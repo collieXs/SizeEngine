@@ -1,0 +1,23 @@
+{
+  "short_name": "SizeEngine",
+  "name": "SizeEngine Risk & Position Calculator",
+  "icons": [
+    {
+      "src": "/assets/images/logo.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#0B0E11",
+  "theme_color": "#181A20",
+  "display": "standalone",
+  "orientation": "portrait"
+}

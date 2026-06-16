@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A Leverage size calculator for crypto derivatives trading">
+  <title>SizeEngine</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="calculator">
+  <h2>SizeEngine</h2>
+
+  <section class="toggle-container">
+    <button class="toggle-btn active long" id="longBtn" onclick="setDirection('LONG')">LONG</button>
+    <button class="toggle-btn" id="shortBtn" onclick="setDirection('SHORT')">SHORT</button>
+  </section>
+
+  <section class="form-group">
+    <label for="accountSize">Account Balance ($)</label>
+    <input type="text" id="accountSize" placeholder="e.g. 10" inputmode="decimal" autocapitalize="off" autocomplete="off" autocorrect="off">
+  </section>
+  
+  <section class="form-group">
+    <label for="riskAmount">Cash Amount to Risk ($)</label>
+    <input type="text" id="riskAmount" placeholder="e.g. 2" inputmode="decimal" autocapitalize="off" autocomplete="off" autocorrect="off">
+  </section>
+  
+  <section class="form-group">
+    <label for="rrRatio">Risk to Reward Ratio (1 : X)</label>
+    <input type="text" id="rrRatio" placeholder="e.g. 3" inputmode="decimal" autocapitalize="off" autocomplete="off" autocorrect="off">
+  </section>
+  
+  <section class="form-group">
+    <label for="entryPrice">Entry Price ($)</label>
+    <input type="text" id="entryPrice" placeholder="e.g. 60,000" inputmode="decimal" autocapitalize="off" autocomplete="off" autocorrect="off">
+  </section>
+  
+  <section class="form-group">
+    <label for="stopLoss">Stop Loss Price ($)</label>
+    <input type="text" id="stopLoss" placeholder="e.g. 58,800" inputmode="decimal" autocapitalize="off" autocomplete="off" autocorrect="off">
+  </section>
+
+  <section class="results">
+    <div class="result-row">
+      <span class="result-label">Required Position Size ($):</span>
+      <span class="result-val" id="positionSizeText">-</span>
+    </div>
+    <div class="result-row">
+      <span class="result-label">Exact Leverage to Set:</span>
+      <span class="result-val" id="leverageText">-</span>
+    </div>
+  </section>
+</main>
+
+<script src="/js/main.js"></script>
+<script src="/js/register_sw.js"></script>
+
+</body>
+</html>
