@@ -3,6 +3,7 @@ const filesToSave = [
   "/",                 
   "/index.html",       
   "/style.css",
+  "/assets/fonts/orbitron-black.otf",
   "/manifest.json",
   "/sw.js",
   "/js/main.js",
