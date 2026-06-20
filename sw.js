@@ -1,7 +1,7 @@
 const vaultName = "size-engine-v1";
 const filesToSave = [
   "/",                 
-  "/index.html",       
+  "/app.html",       
   "/style.css",
   "/assets/fonts/orbitron-black.otf",
   "/manifest.json",
