@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: 'orbitron-black';
-  src: url('/assets/fonts/orbitron-black.otf') format('opentype');
+  src: url('assets/orbitron-black.otf') format('opentype');
   font-display: swap;
 }
 
@@ -28,17 +28,100 @@ body {
   color: var(--text-main);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
-  padding: 20px;
+  overflow-y: auto;
+  padding: 30px 16px;
 }
 
 @supports(height: 100dvh) {
-  body{
-    height: 100dvh;
+  body {
+    min-height: 100dvh;
   }
 }
 
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(11, 14, 17, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-card {
+  background: var(--bg-card);
+  width: 90%;
+  max-width: 400px;
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid #23282E;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+  text-align: center;
+}
+
+.modal-card h3 {
+  font-family: 'orbitron-black';
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #FFF;
+}
+
+.modal-card p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-bottom: 20px;
+}
+
+.modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-btn {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.modal-btn:hover {
+  border-color: var(--text-muted);
+  background: #363D47;
+}
+
+.modal-btn .btn-title {
+  color: #FFF;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.modal-btn .btn-sub {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Calculator Container */
 .calculator {
   background: var(--bg-card);
   width: 100%;
@@ -47,17 +130,48 @@ body {
   border-radius: 16px;
   box-shadow: 0 12px 40px rgba(0,0,0,0.5);
   border: 1px solid #23282E;
+  margin-bottom: 30px;
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   font-size: 1.4rem;
   font-family: 'orbitron-black';
   letter-spacing: 0.5px;
   color: #FFF;
 }
 
+/* Custom Popup-Style Switcher Tabs */
+.engine-switch-container {
+  display: flex;
+  background: var(--bg-input);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 4px;
+  border: 1px solid var(--border);
+}
+
+.switch-tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 10px 8px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.switch-tab.active {
+  background: #363D47;
+  color: #FFF;
+  border: 1px solid var(--border);
+}
+
+/* Direction Toggles */
 .toggle-container {
   display: flex;
   background: var(--bg-input);
@@ -136,12 +250,13 @@ input.input-error {
 .result-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 12px;
+  align-items: center;
   font-size: 0.95rem;
 }
 
 .result-label {
   color: var(--text-muted);
+  font-weight: 500;
 }
 
 .result-val {
@@ -154,12 +269,19 @@ input.input-error {
   color: var(--accent-green);
   font-size: 1.1rem;
   font-weight: 600;
-  text-transform: none;
 }
 
 .warning-red {
   color: var(--accent-red);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
-  text-transform: uppercase;
+}
+
+.sub-warning {
+  display: block;
+  font-size: 0.78rem;
+  color: #F6465D;
+  margin-top: 4px;
+  font-weight: 500;
+  text-align: right;
 }

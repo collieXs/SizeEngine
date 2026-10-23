@@ -3,17 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A Leverage size calculator for crypto derivatives trading">
+  <meta name="description" content="Position size and lot size engine for traders">
   <title>SizeEngine</title>
-  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- Initial Setup Modal -->
+<div class="modal-overlay" id="modeModal">
+  <div class="modal-card">
+    <h3>Select Engine Mode</h3>
+    <p>Choose your target execution environment to configure calculation rules.</p>
+    <div class="modal-options">
+      <button class="modal-btn" onclick="selectInitialMode('LOT')">
+        <span class="btn-title">Lot Mode</span>
+        <span class="btn-sub">(MT5)</span>
+      </button>
+      <button class="modal-btn" onclick="selectInitialMode('LEVERAGE')">
+        <span class="btn-title">Leverage Mode</span>
+        <span class="btn-sub">(Crypto Ex)</span>
+      </button>
+    </div>
+  </div>
+</div>
+
 <main class="calculator">
   <h2>SizeEngine</h2>
 
+  <!-- Custom Popup-Style Mode Switcher -->
+  <section class="engine-switch-container">
+    <button class="switch-tab active" id="lotTab" onclick="switchEngineMode('LOT')">Lot Mode (MT5)</button>
+    <button class="switch-tab" id="levTab" onclick="switchEngineMode('LEVERAGE')">Leverage Mode (Crypto Ex)</button>
+  </section>
+
+  <!-- Long/Short Toggle -->
   <section class="toggle-container">
     <button class="toggle-btn active long" id="longBtn" onclick="setDirection('LONG')">LONG</button>
     <button class="toggle-btn" id="shortBtn" onclick="setDirection('SHORT')">SHORT</button>
@@ -36,28 +61,22 @@
   
   <section class="form-group">
     <label for="entryPrice">Entry Price ($)</label>
-    <input type="text" id="entryPrice" placeholder="e.g. 60,000" inputmode="decimal" autocapitalize="off" autocomplete="off" autocorrect="off">
+    <input type="text" id="entryPrice" placeholder="e.g. 41,200" inputmode="decimal" autocapitalize="off" autocomplete="off" autocorrect="off">
   </section>
   
   <section class="form-group">
     <label for="stopLoss">Stop Loss Price ($)</label>
-    <input type="text" id="stopLoss" placeholder="e.g. 58,800" inputmode="decimal" autocapitalize="off" autocomplete="off" autocorrect="off">
+    <input type="text" id="stopLoss" placeholder="e.g. 41,100" inputmode="decimal" autocapitalize="off" autocomplete="off" autocorrect="off">
   </section>
 
-  <section class="results">
-    <div class="result-row">
-      <span class="result-label">Required Position Size ($):</span>
-      <span class="result-val" id="positionSizeText">-</span>
-    </div>
-    <div class="result-row">
-      <span class="result-label">Exact Leverage to Set:</span>
-      <span class="result-val" id="leverageText">-</span>
-    </div>
+  <!-- Simplified Results Section -->
+  <section class="results" id="resultsContainer">
+    <!-- Populated via JS -->
   </section>
 </main>
 
-<script src="/js/main.js"></script>
-<script src="/js/register_sw.js"></script>
+<script src="main.js"></script>
+<script src="register_sw.js"></script>
 
 </body>
 </html>
